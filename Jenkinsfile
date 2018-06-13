@@ -40,6 +40,14 @@ node("android"){
     }
   }
 
+  stage("Analyze"){
+    try {
+        analyzeBuild binaryPath: 'app/build/outputs/apk/debug/app-debug.apk', platform: 'android'
+    } catch(Error e) {
+        e.printStackTrace()
+    }
+  }
+
  stage("Archive"){
     if (params.BUILD_CONFIG == 'release') {
         archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-release.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
