@@ -42,7 +42,7 @@ node("android"){
 
   stage("Analyze"){
     try {
-        analyzeBuild binaryPath: 'app/build/outputs/apk/debug/app-debug.apk', platform: 'android'
+        analyzeBuild binaryPath: "$WORKSPACE/app/build/outputs/apk/debug/app-debug.apk", platform: 'android'
     } catch(Error e) {
         e.printStackTrace()
     }
