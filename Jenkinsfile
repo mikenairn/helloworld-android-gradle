@@ -10,6 +10,7 @@ node("android"){
     if(params.FH_CONFIG_CONTENT) {
         writeFile file: 'app/src/main/assets/fhconfig.properties', text: params.FH_CONFIG_CONTENT
     }
+    sh "tree"
   }
 
   stage("Build"){
@@ -19,6 +20,7 @@ node("android"){
     } else {
       sh './gradlew clean assembleDebug' // builds app/build/outputs/apk/app-debug.apk
     }
+    sh "tree"
   }
 
   def keyStoreId = params.BUILD_CREDENTIAL_ID
